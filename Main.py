@@ -55,7 +55,7 @@ class Window:
         self.m.update()
         self.m.update_idletasks()
 
-        if(time.time()-self.start>4):
+        if(time.time()-self.start>5.5):
             self.saveImage()
             self.clear()
             self.start=time.time()
@@ -63,8 +63,8 @@ class Window:
     def callback(self, event):
         startx = event.x
         starty = event.y
-        self.w.create_oval(startx - 8, starty - 8, startx + 8, starty + 8, fill='black')
-        self.draw.ellipse([startx - 8, starty - 8, startx + 8, starty + 8],(255,255,255))
+        self.w.create_oval(startx - 14, starty - 14, startx + 14, starty + 14, fill='black')
+        self.draw.ellipse([startx - 14, starty - 14, startx + 14, starty + 14],(255,255,255))
 
 
     def clear(self):
@@ -75,7 +75,6 @@ class Window:
 
     def saveImage(self):
         self.image = self.image.resize((28, 28), Image.ANTIALIAS)
-        self.image.show()
         aaa=predictImage(self.image)
         bbb=model.predict(aaa)
         print(np.argmax(bbb))
